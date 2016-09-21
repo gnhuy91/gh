@@ -24,12 +24,29 @@ It'll either just be a `cd` or it will clone `git@github.com:githubuser/githubre
 
 Note that tab completion is available for project and usernames.
 
+## Changing the base directory
+`gh` will clone or `cd` into `$GH_BASE_DIR/github.com/user/repo`.
+By default `$GH_BASE_DIR` points to `$HOME/src`. By changing the `$GH_BASE_DIR` variable in your shell's config file, you can control where `gh` will clone/`cd` into.
+
+**Note:** Already cloned repos will not be transferred to the new location, they will be cloned again.
+
+**More important Note:** Do not use the tilde-character (`~`) in `$GH_BASE_DIR`, use `$HOME` instead.
+
 Supported Shells
 ================
 
 * bash
 * [fish](http://fishshell.com/)
 * [OH-MY-ZSH](http://ohmyz.sh/)
+* zsh
+
+Installation for bash
+=====================
+
+```
+echo 'source ~/src/github.com/dickeyxxx/gh/bash/gh.bash' >> ~/.bashrc
+echo 'source ~/src/github.com/dickeyxxx/gh/completions/gh.bash' >> ~/.bashrc
+```
 
 Installation For Fish
 =====================
@@ -56,15 +73,15 @@ Add this environment variable for your GitHub username (optional)
     GITHUB[user]=dickeyxxx
 
 Then symlink (or copy) the gh folder into your Oh-My-ZSH plugins folder
-    
+
     ln -s ~/src/github.com/dickeyxxx/gh/zsh/gh ~/.oh-my-zsh/custom/plugins/gh
 
 Next add the plugin to your `~/.zshrc` file
-    
+
     plugins=(gh)
 
 For example:
-    
+
 ```
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -77,11 +94,21 @@ Finally reload the `~/.zshrc` file:
 
     source ~/.zshrc
 
-Installation for bash
-=====================
+The zsh autocompletion supports loading a user's repositories from github. For that to work, you need to set the environment variable `GH_FETCH_REPOS` to true. You will also need to install [jsawk](https://github.com/micha/jsawk) for it to work.
 
+If you now type `gh someusername` and then press `<Tab>`, it will load that user's repositories from github and display them to you.
+
+Installation for zsh
+==========================
+Zsh supports bash autocomplete. You can add the following to your .zshrc but make sure you have `compinit` done first.
 ```
-echo 'source ~/src/github.com/dickeyxxx/gh/functions/gh.bash' >> ~/.bashrc
+compinit
+...
+# bash completion and gh
+autoload bashcompinit
+bashcompinit
+source ~/src/github.com/dickeyxxx/gh/bash/gh.bash
+source ~/src/github.com/dickeyxxx/gh/completions/gh.bash
 ```
 
 GitHub Alternatives

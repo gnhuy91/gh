@@ -1,3 +1,7 @@
+if not set -q GH_BASE_DIR
+    set GH_BASE_DIR $HOME/src
+end
+
 function gh
   set git_host github.com
   set -l repo ""
@@ -10,7 +14,7 @@ function gh
   set user $argv[1]
   set repo $argv[2]
 
-  set -l path $HOME/src/$git_host/$user/$repo
+  set -l path $GH_BASE_DIR/$git_host/$user/$repo
   if not test -d $path
     git clone git@$git_host:$user/$repo.git $path
   end
