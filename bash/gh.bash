@@ -2,6 +2,7 @@
 
 GH_BASE_DIR=${GH_BASE_DIR:-$HOME/src}
 
+# Usage: gh gl namespace repo
 function gh() {
   if [[ $# -lt 2 || $# -gt 3 ]]; then
     echo "USAGE: gh [host:-github.com] [user] [repo]"
