@@ -30,8 +30,6 @@ function gh() {
     ;;
     "df") host="git.dwarvesf.com"
     ;;
-    *) echo "unknow host: $host"; return
-    ;;
   esac
 
   user_path=$GH_BASE_DIR/$host/$user
