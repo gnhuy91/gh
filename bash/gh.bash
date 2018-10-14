@@ -26,9 +26,7 @@ function gh() {
     ;;
     "bb") host="bitbucket.org"
     ;;
-    "hr") host="git.heroku.com"
-    ;;
-    "df") host="git.dwarvesf.com"
+    *) host="$host"
     ;;
   esac
 
